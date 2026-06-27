@@ -49,7 +49,7 @@ const LOVE_CONFIG = {
     src: "./assets/song.mp3", // e.g. "assets/our-song.mp3" or "https://..."
     title: "Our Song",
     artist: "",
-    autoplay: false, // browsers block autoplay until the user interacts; we start on first click after unlock
+    autoplay: true, // browsers block autoplay until the user interacts; we start on first click after unlock
   },
 
   /* ---------------------------------------------------------------------------
