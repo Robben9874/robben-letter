@@ -15,7 +15,7 @@ const LOVE_CONFIG = {
      Used in the hero title, footer and browser tab.
    --------------------------------------------------------------------------- */
   partnerA: "Ahmed",      // ← replace
-  partnerB: "?",      // ← replace
+  partnerB: "Rana",      // ← replace
   // Optional tab/footer override — leave blank to use "partnerA & partnerB".
   siteTitle: "",
 
@@ -28,7 +28,7 @@ const LOVE_CONFIG = {
      Hint idea: the date you first met. e.g. "Enter the date we first met 💕"
      and set SITE_PASSWORD to that date in DDMMYYYY or any format you both know.
   --------------------------------------------------------------------------- */
-  passwordHint: "Enter the date we first met 💕",
+  passwordHint: "Enter the date we are get Engagement 💕",
   passwordPlaceholder: "dd/mm/yyyy",
   // Optional: an extra line of tenderness under the hint.
   passwordSubtext: "A little secret, just for us.",
@@ -46,7 +46,7 @@ const LOVE_CONFIG = {
      Set to "" to disable music entirely.
    --------------------------------------------------------------------------- */
   song: {
-    src: "", // e.g. "assets/our-song.mp3" or "https://..."
+    src: "./assets/song.mp3", // e.g. "assets/our-song.mp3" or "https://..."
     title: "Our Song",
     artist: "",
     autoplay: false, // browsers block autoplay until the user interacts; we start on first click after unlock
@@ -68,28 +68,28 @@ const LOVE_CONFIG = {
    --------------------------------------------------------------------------- */
   timeline: [
     {
-      date: "Spring 2023",
-      title: "Our First Date",
-      text: "A quiet table, two nervous smiles, and the feeling that everything was about to begin.",
-      icon: "☕",
+      date: "15/12/2020",
+      title: "First Time We Meet",
+      text: "اول ما شوفتك اتشديت ليكي معرفش حصلي ايه بس ساعتها ادركت اني مش عايز غيرك",
+      icon: "♥️",
     },
     {
-      date: "Summer 2023",
-      title: 'First "I love you"',
-      text: "Said softly, late at night, when we both finally admitted what we already knew.",
+      date: "16/4/2021",
+      title: 'First Time You Siad "I love you"',
+      text: "كنا بنتكلم و ساعتها قولتلي انك بداتي تحبيني .",
       icon: "💌",
     },
     {
-      date: "Autumn 2025",
+      date: "6/2/2026",
       title: "The Engagement",
-      text: "On one knee, under string lights, with a question we had been carrying for months.",
+      text: "هنا ادركت اني وصلت لحاجه بقالي سنين بحلم بيها .",
       icon: "💍",
     },
     {
-      date: "January 2027",
+      date: "??/1/2027",
       title: "The Wedding",
-      text: "When two lives become one story. The day the countdown has been counting toward.",
-      icon: "💍",
+      text: "مستني اليوم ده يجي و تكوني ملكي و مش عايز اي حاجه تانيه من الدنيا . بحبك",
+      icon: "👩‍❤️‍💋‍👨",
     },
   ],
 
@@ -101,12 +101,12 @@ const LOVE_CONFIG = {
      - rotate: degrees; leave null for a gentle random tilt
    --------------------------------------------------------------------------- */
   polaroids: [
-    { caption: "the first photo of us", image: "", tint: "rose", rotate: -7 },
-    { caption: "that rainy afternoon", image: "", tint: "sky", rotate: 5 },
-    { caption: "you, mid-laugh", image: "", tint: "gold", rotate: -4 },
-    { caption: "our little kitchen", image: "", tint: "cream", rotate: 8 },
-    { caption: "the day you said yes", image: "", tint: "blush", rotate: -10 },
-    { caption: "somewhere by the sea", image: "", tint: "sky", rotate: 6 },
+    { caption: "The first photo of us", image: "./assets/image.png", tint: "rose", rotate: -7 },
+    { caption: "First Photo After We Started Dating.", image: "./assets/image2.jpg", tint: "sky", rotate: 5 },
+    { caption: "I Look To My Moon", image: "./assets/image3.jpg", tint: "gold", rotate: -4 },
+    { caption: "in the end it's She and i", image: "./assets/image4.jpg", tint: "cream", rotate: 8 },
+    { caption: "Love you Forever", image: "./assets/image6.jpg", tint: "blush", rotate: -10 },
+    { caption: "my greatest victories", image: "./assets/image5.png", tint: "sky", rotate: 6 },
   ],
 
   /* ---------------------------------------------------------------------------
@@ -122,20 +122,20 @@ const LOVE_CONFIG = {
     {
       type: "note",
       label: "a whisper",
-      heading: "The real first impression",
-      body: "I knew it the moment you laughed at my terrible joke. I was already gone.",
+      heading: "i will choose you forever",
+      body: "عندي استعداد اعادي الكل عشان اوصلك و هختارك دايما ",
     },
     {
       type: "joke",
       label: "inside joke",
-      heading: "The great dumpling incident",
-      body: "We still maintain it was an even split. History will judge us kindly.",
+      heading: "You Are My Everything ",
+      body: "انت مش حبيبتي بس انت كل حاجه بنسبالي اهلي و بنتي و حبيبتي و صحبتي ",
     },
     {
       type: "photo",
       label: "a hidden moment",
       caption: "the look you give me",
-      image: "",
+      image: "./assets/image7.jpg",
       tint: "gold",
     },
   ],
@@ -146,15 +146,15 @@ const LOVE_CONFIG = {
      Use \n\n for paragraph breaks.
    --------------------------------------------------------------------------- */
   letter: {
-    salutation: "حبيبي،",            // ← "My love,"
+    salutation: "بنتي و حبيبتي",            // ← "My love,"
     // Replace the lines below with your own letter.
     paragraphs: [
-      "منذ أول لقاء، صار العالم أهدأ. كأن كل ضجيج الحياة كان ينتظر أن تأتي لتبدّده.",
-      "أحببتك في التفاصيل الصغيرة: في ضحكتك حين لا تتوقعها، في طريقة حديثك عن الأشياء التي تحبها، في يدك حين تبحث عن يدي دون أن تنتبه.",
-      "العدّ التنازلي للأيام لا يخيفني؛ هو فقط يذكّرني أن كل يوم يقرّبنا من لحظة نقول فيها: بقية العمر.",
-      "اكتب لك هذه الكلمات كما أكتب وعدًا — أن أحبك كما تستحق، بصبرٍ وفرحٍ وضحكٍ في منتصف الليل.",
+      "عايز اقولك انك احسن حاجه حصلت في حياتي و بجد انا اكتر انسان محظوظ في الدنيا عشان بقيتي من نصيبي.",
+      "بحبك من 6 سنين ونص و هفضل احبك طول عمري بنفس الطريقه و الشغف و مش هزهق ولا حبي هيقل ليكي",
+      "واسف علي كل موقف دايقتك او زعلتك في اللي عايزك تبقي متاكده منو اني بحبك و مليش غيرك",
+      "هتفضلي الاولوليه بنسبالي و هعمل كل حاجه اقدر عليها عشان اخليكي مبسوطه دايما يا عيوني",
     ],
-    signoff: "إلى الأبد،\nأنا",        // ← "Forever, me"
+    signoff: "بحبك\nحبيبك",        // ← "Forever, me"
   },
 };
 
