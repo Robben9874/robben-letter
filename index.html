@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="theme-color" content="#070617" />
+  <meta name="description" content="A private little universe for two." />
+  <meta name="robots" content="noindex, nofollow" />
+  <title>For Us</title>
+
+  <!-- Fonts: elegant serif (Playfair + Instrument Serif), grotesk body
+       (Hanken Grotesk), handwritten captions (Caveat), Arabic letter (Tajawal) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;500;600&family=Hanken+Grotesk:wght@300;400;500;600&family=Instrument+Serif:ital@0;1&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Tajawal:wght@400;500;700&display=swap"
+    rel="stylesheet"
+  />
+
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+  <!-- Backdrop: animated twinkling star field (warm white / faint gold) -->
+  <canvas id="starfield" aria-hidden="true"></canvas>
+  <!-- Soft ambient glows + occasional floating hearts -->
+  <div class="ambient" aria-hidden="true">
+    <span class="ambient__glow ambient__glow--rose"></span>
+    <span class="ambient__glow ambient__glow--gold"></span>
+    <span class="hearts" id="hearts"></span>
+  </div>
+
+  <!-- =====================================================================
+       PASSWORD GATE — shown before any content
+       ================================================================== -->
+  <div id="gate" class="gate" role="dialog" aria-modal="true" aria-label="Welcome">
+    <div class="gate__card">
+      <div class="gate__seal" aria-hidden="true">
+        <span class="gate__seal-heart">❤</span>
+      </div>
+      <p class="gate__kicker">a private little universe</p>
+      <h1 class="gate__title">For Our Eyes Only</h1>
+      <p class="gate__hint" id="gate-hint"></p>
+      <form class="gate__form" id="gate-form" autocomplete="off">
+        <label class="gate__label" for="gate-password">Password</label>
+        <input
+          class="gate__input"
+          id="gate-password"
+          name="password"
+          type="password"
+          inputmode="text"
+          autocomplete="current-password"
+          spellcheck="false"
+          required
+        />
+        <button class="gate__submit" type="submit">
+          <span>Enter</span>
+          <svg viewBox="0 0 24 24" class="gate__arrow" aria-hidden="true">
+            <path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+        <p class="gate__subtext" id="gate-subtext"></p>
+        <p class="gate__error" id="gate-error" role="alert" hidden></p>
+      </form>
+    </div>
+  </div>
+
+  <!-- =====================================================================
+       THE SITE — revealed after the gate opens
+       ================================================================== -->
+  <div id="site" class="site" aria-hidden="true" hidden>
+    <main>
+      <!-- HERO + COUNTDOWN -->
+      <section class="hero" id="top">
+        <div class="hero__inner">
+          <p class="hero__kicker reveal">our story, kept under the stars</p>
+          <h1 class="hero__title reveal" id="hero-title">—</h1>
+          <p class="hero__amp reveal" aria-hidden="true">&amp;</p>
+          <h2 class="hero__title2 reveal" id="hero-title2">—</h2>
+          <p class="hero__subtitle reveal" id="hero-subtitle">
+            From a first hello to forever — this is the little corner of the sky we call ours.
+          </p>
+
+          <!-- Countdown: the heart of the page -->
+          <div class="countdown" id="countdown" role="timer" aria-label="Countdown to our wedding day">
+            <p class="countdown__label reveal">counting down to our day</p>
+            <div class="countdown__units">
+              <div class="countdown__unit reveal"><span class="countdown__num" data-unit="days">00</span><span class="countdown__cap">days</span></div>
+              <div class="countdown__sep" aria-hidden="true">:</div>
+              <div class="countdown__unit reveal"><span class="countdown__num" data-unit="hours">00</span><span class="countdown__cap">hours</span></div>
+              <div class="countdown__sep" aria-hidden="true">:</div>
+              <div class="countdown__unit reveal"><span class="countdown__num" data-unit="minutes">00</span><span class="countdown__cap">minutes</span></div>
+              <div class="countdown__sep" aria-hidden="true">:</div>
+              <div class="countdown__unit reveal"><span class="countdown__num" data-unit="seconds">00</span><span class="countdown__cap">seconds</span></div>
+            </div>
+            <p class="countdown__place reveal" id="countdown-place"></p>
+          </div>
+
+          <div class="hero__cue reveal" aria-hidden="true">
+            <span class="hero__cue-text">turn the page</span>
+            <span class="hero__cue-line"></span>
+          </div>
+        </div>
+      </section>
+
+      <!-- TIMELINE -->
+      <section class="timeline section" id="timeline" aria-label="Our timeline">
+        <div class="section__head reveal">
+          <p class="section__kicker">the story so far</p>
+          <h2 class="section__title">Our Timeline</h2>
+          <p class="section__lead">A handful of moments that turned two lives into one.</p>
+        </div>
+        <ol class="timeline__list" id="timeline-list"></ol>
+      </section>
+
+      <!-- MOMENTS / POLAROIDS -->
+      <section class="moments section" id="moments" aria-label="Our moments">
+        <div class="section__head reveal">
+          <p class="section__kicker">scattered &amp; sunlit</p>
+          <h2 class="section__title">Moments</h2>
+          <p class="section__lead">Pick one up, move it around — they’re all a little out of order, just like memory.</p>
+        </div>
+        <div class="polaroid-field" id="polaroid-field" aria-label="Draggable photo memories"></div>
+      </section>
+
+      <!-- SECRETS / SCRATCH CARDS -->
+      <section class="secrets section" id="secrets" aria-label="Our secrets">
+        <div class="section__head reveal">
+          <p class="section__kicker">things only we know</p>
+          <h2 class="section__title">Secrets</h2>
+          <p class="section__lead">Scratch gently. Each one hides something meant for you.</p>
+        </div>
+        <div class="scratch-grid" id="scratch-grid"></div>
+      </section>
+
+      <!-- LOVE LETTER (Arabic, RTL) -->
+      <section class="letter-section section" id="letter" aria-label="Love letter">
+        <div class="section__head reveal">
+          <p class="section__kicker">between the lines</p>
+          <h2 class="section__title">A Letter, In Arabic</h2>
+        </div>
+        <div class="letter-wrap" id="letter-wrap">
+          <article class="letter" id="letter-card" lang="ar" dir="rtl"></article>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <p class="footer__line">made with love &amp; a little stardust</p>
+      <p class="footer__sig" id="footer-sig">—</p>
+    </footer>
+  </div>
+
+  <!-- Floating audio control (discreet) -->
+  <div class="audio-control" id="audio-control" hidden>
+    <button class="audio-btn" id="audio-btn" type="button" aria-label="Play our song" aria-pressed="false" title="Our song">
+      <span class="audio-btn__icon" aria-hidden="true">
+        <svg class="icon-play" viewBox="0 0 24 24"><path d="M8 5v14l11-7z" fill="currentColor"/></svg>
+        <svg class="icon-pause" viewBox="0 0 24 24"><path d="M7 5h3v14H7zM14 5h3v14h-3z" fill="currentColor"/></svg>
+      </span>
+      <span class="audio-btn__bars" aria-hidden="true">
+        <i></i><i></i><i></i>
+      </span>
+    </button>
+    <button class="audio-mute" id="audio-mute" type="button" aria-label="Mute" aria-pressed="false" title="Mute">
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M4 9v6h4l5 4V5L8 9H4z" fill="currentColor"/>
+        <path class="icon-mute-off" d="M16 9l4 4M20 9l-4 4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+      </svg>
+    </button>
+  </div>
+
+  <!-- Fixed bottom navigation -->
+  <nav class="bottom-nav" id="bottom-nav" aria-label="Sections" hidden>
+    <a class="bottom-nav__link" href="#timeline" data-target="timeline">
+      <span class="bottom-nav__dot" aria-hidden="true"></span>
+      <span class="bottom-nav__label">Timeline</span>
+    </a>
+    <a class="bottom-nav__link" href="#moments" data-target="moments">
+      <span class="bottom-nav__dot" aria-hidden="true"></span>
+      <span class="bottom-nav__label">Moments</span>
+    </a>
+    <a class="bottom-nav__link" href="#secrets" data-target="secrets">
+      <span class="bottom-nav__dot" aria-hidden="true"></span>
+      <span class="bottom-nav__label">Secrets</span>
+    </a>
+    <a class="bottom-nav__link" href="#letter" data-target="letter">
+      <span class="bottom-nav__dot" aria-hidden="true"></span>
+      <span class="bottom-nav__label">Letter</span>
+    </a>
+  </nav>
+
+  <!-- Scripts: config first, then modules, then orchestrator (defer keeps order) -->
+  <script src="js/config.js" defer></script>
+  <script src="js/starfield.js" defer></script>
+  <script src="js/countdown.js" defer></script>
+  <script src="js/audio.js" defer></script>
+  <script src="js/timeline.js" defer></script>
+  <script src="js/polaroids.js" defer></script>
+  <script src="js/scratch.js" defer></script>
+  <script src="js/letter.js" defer></script>
+  <script src="js/nav.js" defer></script>
+  <script src="js/auth.js" defer></script>
+  <script src="js/app.js" defer></script>
+</body>
+</html>
